@@ -14,16 +14,48 @@ export type Database = {
           body: string
           created_at: string
           id: string
+          user_id: string
         }
         Insert: {
           body: string
           created_at?: string
           id?: string
+          user_id: string
         }
         Update: {
           body?: string
           created_at?: string
           id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "posts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          avatar_url: string
+          id: string
+          name: string
+          username: string
+        }
+        Insert: {
+          avatar_url: string
+          id: string
+          name: string
+          username: string
+        }
+        Update: {
+          avatar_url?: string
+          id?: string
+          name?: string
+          username?: string
         }
         Relationships: []
       }

@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation';
 import AuthButtonServer from './auth-button-server';
 import NewPost from './new-post';
+import Posts from './posts';
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -13,7 +14,16 @@ export default async function Home() {
     redirect("/login");
   }
 
-  const { data: posts } = await supabase.from("posts").select("*")
+  const { data } = await supabase
+    .from("posts")
+    .select("*, user: users(*)")
+    .order("created_at", { ascending: false });
+
+  const posts = data?.map(post => ({
+    ...post,
+    user: Array.isArray(post.user) ? post.user[0] : post.user,
+  })) ?? [];
+
   return (
     <div className="w-full max-x-xl mx-auto">
       <div className="flex justify-between px-4 py-6 border border-gray-800">
@@ -21,7 +31,7 @@ export default async function Home() {
         <AuthButtonServer />
       </div>
       <NewPost user={session.user}/>
-      <pre>{JSON.stringify(posts, null, 2)}</pre>
+      <Posts posts={posts}/>
     </div>
   )
 
