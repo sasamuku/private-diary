@@ -2,6 +2,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation';
 import AuthButtonServer from './auth-button-server';
+import NewPost from './new-post';
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -19,6 +20,7 @@ export default async function Home() {
         <h1 className="text-xl font-bold">Positive Diary</h1>
         <AuthButtonServer />
       </div>
+      <NewPost user={session.user}/>
       <pre>{JSON.stringify(posts, null, 2)}</pre>
     </div>
   )
