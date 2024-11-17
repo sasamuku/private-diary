@@ -13,18 +13,21 @@ export type Database = {
         Row: {
           body: string
           created_at: string
+          happened_at: string
           id: string
           user_id: string
         }
         Insert: {
           body: string
           created_at?: string
+          happened_at: string
           id?: string
           user_id: string
         }
         Update: {
           body?: string
           created_at?: string
+          happened_at?: string
           id?: string
           user_id?: string
         }

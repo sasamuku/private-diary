@@ -17,7 +17,7 @@ export default async function Home() {
   const { data } = await supabase
     .from("posts")
     .select("*, user: users(*)")
-    .order("created_at", { ascending: false });
+    .order("happened_at", { ascending: false });
 
   const posts = data?.map(post => ({
     ...post,

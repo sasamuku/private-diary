@@ -30,7 +30,7 @@ export default function Posts({ posts }: { posts: PostWithUser[] }) {
       <div className="ml-4">
         <p>
           <span className="text-base text-gray-400">
-            {new Date(post.created_at).toLocaleDateString("ja-JP", {
+            {new Date(post.happened_at).toLocaleDateString("ja-JP", {
               timeZone: "Asia/Tokyo",
               year: "numeric",
               month: "2-digit",
