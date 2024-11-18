@@ -5,6 +5,8 @@ import AuthButtonServer from './auth-button-server';
 import NewPost from './new-post';
 import Posts from './posts';
 
+export const dynamic = "force-dynamic"
+
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
 
