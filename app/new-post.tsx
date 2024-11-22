@@ -16,43 +16,38 @@ export default function NewPost({ user }: { user: User }) {
 
   return (
     <form
-      className="border border-gray-800 border-t-0"
+      className="border border-gray-800 border-t-0 p-6"
       action={addPost}
     >
-      <div className="flex flex-col px-4 py-8">
-        <div className="flex">
-          <div className="h-12 w-12">
-            <Image
-              className="rounded-full"
-              src={user.user_metadata.avatar_url}
-              alt="user avatar"
-              width={48}
-              height={48}
-            />
-          </div>
+      <div className="space-y-6">
+        <div>
           <input
+            id="happened_at"
             type="date"
             name="happened_at"
-            className="bg-inherit border border-gray-700 rounded px-2 py-1 ml-2 text-sm h-10"
+            className="bg-inherit border border-gray-700 rounded p-3 text-sm h-12 w-48 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors"
             required
           />
         </div>
-        <div className="pl-14">
+
+        <div>
           <textarea
+            id="post-body"
             name="body"
-            rows={4}
-            className="bg-inherit w-full resize-none border border-gray-700 rounded p-2 text-lg leading-relaxed placeholder-gray-500"
+            rows={6}
+            className="bg-inherit w-full resize-none border border-gray-700 rounded p-4 text-lg leading-relaxed placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors"
             placeholder="What's good today?"
             required
           />
-          <div className="flex justify-end mt-2">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-            >
-              Post
-            </button>
-          </div>
+        </div>
+
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded transition-colors duration-200 min-w-[120px]"
+          >
+            Post
+          </button>
         </div>
       </div>
     </form>
