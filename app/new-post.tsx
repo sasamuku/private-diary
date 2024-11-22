@@ -15,7 +15,10 @@ export default function NewPost({ user }: { user: User }) {
   }
 
   return (
-    <form className="border border-gray-800 border-t-0" action={addPost}>
+    <form
+      className="border border-gray-800 border-t-0"
+      action={addPost}
+    >
       <div className="flex flex-col px-4 py-8">
         <div className="flex">
           <div className="h-12 w-12">
@@ -30,13 +33,26 @@ export default function NewPost({ user }: { user: User }) {
           <input
             type="date"
             name="happened_at"
-            className="bg-inherit border border-gray-700 rounded px-2 py-1 ml-2 text-sm"
+            className="bg-inherit border border-gray-700 rounded px-2 py-1 ml-2 text-sm h-10"
+            required
           />
-          <input
-            name='body'
-            className="bg-inherit flex-1 ml-2 text-2xl leading-loose placeholder-gray-500 px-2"
+        </div>
+        <div className="pl-14">
+          <textarea
+            name="body"
+            rows={4}
+            className="bg-inherit w-full resize-none border border-gray-700 rounded p-2 text-lg leading-relaxed placeholder-gray-500"
             placeholder="What's good today?"
+            required
           />
+          <div className="flex justify-end mt-2">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            >
+              Post
+            </button>
+          </div>
         </div>
       </div>
     </form>
