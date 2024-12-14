@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Positive Diary
+
+## Overview
+
+Positive Diary is an open-source web application that allows you to easily build a privacy-focused personal diary site. By leveraging Supabase and Vercel, we provide a secure and personalized diary experience. Your secret diary is completely secure 🔐
+
+## Key Features
+
+### 🔒 Privacy-First
+- End-to-end encryption
+- Completely private diary site
+- Prevents data access by third parties
+
+### 🚀 Easy Deployment
+- Simple setup using Supabase and Vercel
+- Launch your personal diary site in minutes
+
+### 🛠️ Customizability
+- Open-source and freely forkable
+- Easy to add and modify features
+- Community contributions welcome
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Supabase
+- Vercel
+- TailwindCSS
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v18 or higher)
+- Supabase account
+- Vercel account
+
+### Installation Steps
+
+**Clone the repository**
+
+```bash
+git clone https://github.com/sasamuku/private-diary.git
+cd private-diary
+```
+
+**Install dependencies**
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+**Set up environment variables**
+
+- Create `.env.local` file from `.env.template`
+- Configure Supabase connection details
+
+**Set Local development with supabase**
+
+https://supabase.com/docs/guides/local-development/overview
+
+**Start the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contributing
 
-## Learn More
+We welcome pull requests for feature additions and improvements! Please follow these guidelines:
+- Maintain code style consistency
+- Add tests
+- Provide clear descriptions in your pull requests
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+MIT License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Support
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Report bugs and feature requests through the issues tracker.
