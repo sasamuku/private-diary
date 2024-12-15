@@ -1,8 +1,8 @@
-# Positive Diary
+# Private Diary
 
 ## Overview
 
-Positive Diary is an open-source web application that allows you to easily build a privacy-focused personal diary site. By leveraging Supabase and Vercel, we provide a secure and personalized diary experience. Your secret diary is completely secure 🔐
+Private Diary is an open-source web application that allows you to easily build a privacy-focused personal diary site. By leveraging Supabase and Vercel, we provide a secure and personalized diary experience. Your secret diary is completely secure 🔐
 
 ## Key Features
 

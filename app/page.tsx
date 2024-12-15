@@ -29,7 +29,7 @@ export default async function Home() {
   return (
     <div className="w-full max-x-xl mx-auto">
       <div className="flex justify-between px-4 py-6 border border-gray-800">
-        <h1 className="text-xl font-bold">Positive Diary</h1>
+        <h1 className="text-xl font-bold">Private Diary</h1>
         <AuthButtonServer />
       </div>
       <NewPost user={session.user}/>
