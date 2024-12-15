@@ -60,15 +60,15 @@ pnpm install
 - Create `.env.local` file from `.env.template`
 - Configure Supabase connection details
 
-**Set Local development with supabase**
-
-https://supabase.com/docs/guides/local-development/overview
-
 **Start the development server**
 
 ```bash
 npm run dev
 ```
+
+### Local development
+
+https://supabase.com/docs/guides/local-development/overview
 
 ## Deployment
 
