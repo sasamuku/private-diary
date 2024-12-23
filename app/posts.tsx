@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { MoreHorizontal } from "lucide-react";
+import Star from "./star";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -54,19 +55,22 @@ export default function Posts({ posts }: { posts: PostWithUser[] }) {
         <p>{post.body}</p>
       </div>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-700">
-          <MoreHorizontal className="h-4 w-4" />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="bg-gray-800 text-gray-100">
-          <DropdownMenuItem
-            onClick={() => handleEdit(post.id)}
-            className="cursor-pointer hover:bg-gray-700"
-          >
-            Edit
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <div className="flex items-center space-x-4">
+        <Star post={post} />
+        <DropdownMenu>
+          <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-700">
+            <MoreHorizontal className="h-4 w-4" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="bg-gray-800 text-gray-100">
+            <DropdownMenuItem
+              onClick={() => handleEdit(post.id)}
+              className="cursor-pointer hover:bg-gray-700"
+            >
+              Edit
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </div>
   ));
 }
