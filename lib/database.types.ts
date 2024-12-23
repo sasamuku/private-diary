@@ -15,6 +15,7 @@ export type Database = {
           created_at: string
           happened_at: string
           id: string
+          is_starred: boolean
           user_id: string
         }
         Insert: {
@@ -22,6 +23,7 @@ export type Database = {
           created_at?: string
           happened_at: string
           id?: string
+          is_starred?: boolean
           user_id: string
         }
         Update: {
@@ -29,6 +31,7 @@ export type Database = {
           created_at?: string
           happened_at?: string
           id?: string
+          is_starred?: boolean
           user_id?: string
         }
         Relationships: [
@@ -45,19 +48,19 @@ export type Database = {
         Row: {
           avatar_url: string
           id: string
-          name: string
+          name: string | null
           username: string
         }
         Insert: {
           avatar_url: string
           id: string
-          name: string
+          name?: string | null
           username: string
         }
         Update: {
           avatar_url?: string
           id?: string
-          name?: string
+          name?: string | null
           username?: string
         }
         Relationships: []
