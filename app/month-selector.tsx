@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { addMonths, formatYearMonth } from './utils/date'
+import { addMonths, formatYearMonth } from '../lib/utils/date'
 
 type MonthSelectorProps = {
   targetDate: Date

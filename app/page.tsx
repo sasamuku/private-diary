@@ -1,7 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { startOfMonth, endOfMonth } from './utils/date'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { endOfMonth, startOfMonth } from '../lib/utils/date'
 import AuthButtonServer from './auth-button-server'
 import MonthSelector from './month-selector'
 import NewPost from './new-post'
