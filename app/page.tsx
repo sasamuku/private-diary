@@ -1,13 +1,19 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { endOfMonth, startOfMonth } from '../lib/utils/date'
 import AuthButtonServer from './auth-button-server'
+import MonthSelector from './month-selector'
 import NewPost from './new-post'
 import Posts from './posts'
 
 export const dynamic = 'force-dynamic'
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { month?: string }
+}) {
   const supabase = createServerComponentClient<Database>({ cookies })
 
   const {
@@ -18,9 +24,15 @@ export default async function Home() {
     redirect('/login')
   }
 
+  const targetDate = searchParams.month
+    ? new Date(searchParams.month)
+    : new Date()
+
   const { data } = await supabase
     .from('posts')
     .select('*, user: users(*)')
+    .gte('happened_at', startOfMonth(targetDate).toISOString())
+    .lte('happened_at', endOfMonth(targetDate).toISOString())
     .order('happened_at', { ascending: false })
 
   const posts =
@@ -35,6 +47,7 @@ export default async function Home() {
         <h1 className="text-xl font-bold">Private Diary</h1>
         <AuthButtonServer />
       </div>
+      <MonthSelector targetDate={targetDate} />
       <NewPost user={session.user} />
       <Posts posts={posts} />
     </div>
