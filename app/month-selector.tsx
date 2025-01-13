@@ -1,7 +1,7 @@
 'use client'
 
-import { addMonths, format } from 'date-fns'
 import { useRouter } from 'next/navigation'
+import { addMonths, formatYearMonth } from './utils/date'
 
 type MonthSelectorProps = {
   targetDate: Date
@@ -12,7 +12,7 @@ export default function MonthSelector({ targetDate }: MonthSelectorProps) {
 
   const handleMonthChange = (monthOffset: number) => {
     const newDate = addMonths(targetDate, monthOffset)
-    const newMonth = format(newDate, 'yyyy-MM')
+    const newMonth = formatYearMonth(newDate)
     router.push(`/?month=${newMonth}`)
     router.refresh()
   }
@@ -26,7 +26,7 @@ export default function MonthSelector({ targetDate }: MonthSelectorProps) {
       >
         Previous
       </button>
-      <span>{format(targetDate, 'yyyy-MM')}</span>
+      <span>{formatYearMonth(targetDate)}</span>
       <button
         type="button"
         onClick={() => handleMonthChange(1)}
