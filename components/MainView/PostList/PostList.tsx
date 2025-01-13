@@ -30,10 +30,28 @@ export function PostList({ posts }: { posts: PostWithUser[] }) {
     }
   }, [supabase, router])
 
-  const handleEdit = (postId: string) => {
-    // not implemented
-    router.push(`/posts/edit/${postId}`)
+  const handleEdit = async (
+    postId: string,
+    newBody: string,
+    newHappenedAt: string,
+  ) => {
+    const supabase = createClientComponentClient<Database>()
+    const { error } = await supabase
+      .from('posts')
+      .update({
+        body: newBody,
+        happened_at: new Date(newHappenedAt).toISOString(),
+      })
+      .eq('id', postId)
+
+    if (error) {
+      console.error('Error updating post:', error)
+      return
+    }
+
+    router.refresh()
   }
+
   return posts.map((post) => (
     <PostItem key={post.id} post={post} onEdit={handleEdit} />
   ))
