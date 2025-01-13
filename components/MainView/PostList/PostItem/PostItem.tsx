@@ -5,32 +5,78 @@ import {
   DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu'
 import { MoreHorizontal } from 'lucide-react'
+import { useState } from 'react'
 import StarButton from './StarButton'
 
 type Props = {
   post: PostWithUser
-  onEdit: (postId: string) => void
+  onEdit: (postId: string, newBody: string, newHappenedAt: string) => void
 }
 
 export default function PostItem({ post, onEdit }: Props) {
+  const [isEditing, setIsEditing] = useState(false)
+  const [editedBody, setEditedBody] = useState(post.body)
+  const [editedHappenedAt, setEditedHappenedAt] = useState(
+    post.happened_at.split('T')[0],
+  )
+
+  const handleSubmit = () => {
+    onEdit(post.id, editedBody, editedHappenedAt)
+    setIsEditing(false)
+  }
+
   return (
     <div
       key={post.id}
       className="border border-gray-800 border-t-0 px-4 py-8 flex justify-between"
     >
       <div className="ml-4">
-        <p>
-          <span className="text-base text-gray-400">
-            {new Date(post.happened_at).toLocaleDateString('ja-JP', {
-              timeZone: 'Asia/Tokyo',
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-              weekday: 'short',
-            })}
-          </span>
-        </p>
-        <p>{post.body}</p>
+        {isEditing ? (
+          <div className="space-y-2">
+            <input
+              type="date"
+              value={editedHappenedAt}
+              onChange={(e) => setEditedHappenedAt(e.target.value)}
+              className="bg-gray-700 text-gray-100 p-2 rounded"
+            />
+            <textarea
+              value={editedBody}
+              onChange={(e) => setEditedBody(e.target.value)}
+              className="w-full bg-gray-700 text-gray-100 p-2 rounded"
+            />
+            <div className="space-x-2">
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-700"
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsEditing(false)}
+                className="px-3 py-1 bg-gray-600 rounded hover:bg-gray-700"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <p>
+              <span className="text-base text-gray-400">
+                {new Date(post.happened_at).toLocaleDateString('ja-JP', {
+                  timeZone: 'Asia/Tokyo',
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  weekday: 'short',
+                })}
+              </span>
+            </p>
+            <p>{post.body}</p>
+          </>
+        )}
       </div>
 
       <div className="flex items-center space-x-4">
@@ -44,7 +90,7 @@ export default function PostItem({ post, onEdit }: Props) {
             className="bg-gray-800 text-gray-100"
           >
             <DropdownMenuItem
-              onClick={() => onEdit(post.id)}
+              onClick={() => setIsEditing(true)}
               className="cursor-pointer hover:bg-gray-700"
             >
               Edit
