@@ -3,11 +3,10 @@ import {
   createServerActionClient,
 } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import Image from 'next/image'
 
 export const dynamic = 'force-dynamic'
 
-export default function NewPost({ user }: { user: User }) {
+export function NewPost({ user }: { user: User }) {
   const addPost = async (formData: FormData) => {
     'use server'
     const body = String(formData.get('body'))
