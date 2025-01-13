@@ -1,24 +1,26 @@
-import { createServerActionClient, User } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
-import Image from "next/image";
+import {
+  type User,
+  createServerActionClient,
+} from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import Image from 'next/image'
 
-export const dynamic = "force-dynamic"
+export const dynamic = 'force-dynamic'
 
 export default function NewPost({ user }: { user: User }) {
   const addPost = async (formData: FormData) => {
-    "use server"
-    const body = String(formData.get('body'));
-    const happened_at = new Date(formData.get("happened_at") as string).toISOString();
-    const supabase = createServerActionClient<Database>({ cookies });
+    'use server'
+    const body = String(formData.get('body'))
+    const happened_at = new Date(
+      formData.get('happened_at') as string,
+    ).toISOString()
+    const supabase = createServerActionClient<Database>({ cookies })
 
-    await supabase.from('posts').insert({ body, happened_at, user_id: user.id });
+    await supabase.from('posts').insert({ body, happened_at, user_id: user.id })
   }
 
   return (
-    <form
-      className="border border-gray-800 border-t-0 p-6"
-      action={addPost}
-    >
+    <form className="border border-gray-800 border-t-0 p-6" action={addPost}>
       <div className="space-y-6">
         <div>
           <input
