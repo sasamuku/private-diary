@@ -1,11 +1,9 @@
+import { MainView } from '@/components/MainView'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { endOfMonth, startOfMonth } from '../lib/utils/date'
 import AuthButtonServer from './auth-button-server'
-import MonthSelector from './month-selector'
-import NewPost from './new-post'
-import Posts from './posts'
 
 export const dynamic = 'force-dynamic'
 
@@ -47,9 +45,7 @@ export default async function Home({
         <h1 className="text-xl font-bold">Private Diary</h1>
         <AuthButtonServer />
       </div>
-      <MonthSelector targetDate={targetDate} />
-      <NewPost user={session.user} />
-      <Posts posts={posts} />
+      <MainView targetDate={targetDate} session={session} posts={posts} />
     </div>
   )
 }

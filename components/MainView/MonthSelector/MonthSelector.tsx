@@ -1,13 +1,13 @@
 'use client'
 
+import { addMonths, formatYearMonth } from '@/lib/utils/date'
 import { useRouter } from 'next/navigation'
-import { addMonths, formatYearMonth } from '../lib/utils/date'
 
 type MonthSelectorProps = {
   targetDate: Date
 }
 
-export default function MonthSelector({ targetDate }: MonthSelectorProps) {
+export function MonthSelector({ targetDate }: MonthSelectorProps) {
   const router = useRouter()
 
   const handleMonthChange = (monthOffset: number) => {

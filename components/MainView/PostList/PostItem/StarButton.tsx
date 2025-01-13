@@ -4,7 +4,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Star as StarIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-export default function Star({
+export default function StarButton({
   post,
 }: {
   post: PostWithUser
