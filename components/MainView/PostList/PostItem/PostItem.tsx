@@ -28,8 +28,27 @@ export default function PostItem({ post, onEdit }: Props) {
   return (
     <div
       key={post.id}
-      className="border border-gray-800 border-t-0 px-4 py-8 flex justify-between"
+      className="relative border border-gray-800 border-t-0 px-4 py-8 flex justify-between"
     >
+      <div className="absolute top-0 right-0 mt-2 mr-2 p-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-700">
+            <MoreHorizontal className="h-4 w-4" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="end"
+            className="bg-gray-800 text-gray-100"
+          >
+            <DropdownMenuItem
+              onClick={() => setIsEditing(true)}
+              className="cursor-pointer hover:bg-gray-700"
+            >
+              Edit
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
       <div className="ml-4">
         {isEditing ? (
           <div className="space-y-2">
@@ -75,28 +94,9 @@ export default function PostItem({ post, onEdit }: Props) {
               </span>
             </p>
             <p>{post.body}</p>
+            <StarButton post={post} />
           </>
         )}
-      </div>
-
-      <div className="flex items-center space-x-4">
-        <StarButton post={post} />
-        <DropdownMenu>
-          <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-700">
-            <MoreHorizontal className="h-4 w-4" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align="end"
-            className="bg-gray-800 text-gray-100"
-          >
-            <DropdownMenuItem
-              onClick={() => setIsEditing(true)}
-              className="cursor-pointer hover:bg-gray-700"
-            >
-              Edit
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
     </div>
   )
