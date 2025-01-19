@@ -11,9 +11,10 @@ import StarButton from './StarButton'
 type Props = {
   post: PostWithUser
   onEdit: (postId: string, newBody: string, newHappenedAt: string) => void
+  onDelete: (postId: string) => void
 }
 
-export default function PostItem({ post, onEdit }: Props) {
+export default function PostItem({ post, onEdit, onDelete }: Props) {
   const [isEditing, setIsEditing] = useState(false)
   const [editedBody, setEditedBody] = useState(post.body)
   const [editedHappenedAt, setEditedHappenedAt] = useState(
@@ -44,6 +45,16 @@ export default function PostItem({ post, onEdit }: Props) {
               className="cursor-pointer hover:bg-gray-700"
             >
               Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                if (window.confirm('Are you sure?')) {
+                  onDelete(post.id)
+                }
+              }}
+              className="cursor-pointer hover:bg-gray-700"
+            >
+              Delete
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
