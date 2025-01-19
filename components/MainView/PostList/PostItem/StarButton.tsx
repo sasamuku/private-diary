@@ -40,9 +40,9 @@ export default function StarButton({
       aria-label={post.is_starred ? 'Unstar this post' : 'Star this post'}
     >
       {post.is_starred ? (
-        <StarIcon className="text-yellow-400" size={16} />
+        <StarIcon className="text-yellow-400" />
       ) : (
-        <StarIcon className="text-gray-400" size={16} />
+        <StarIcon className="text-gray-400" />
       )}
     </button>
   )
