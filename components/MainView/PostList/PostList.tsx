@@ -53,7 +53,22 @@ export function PostList({ posts }: { posts: PostWithUser[] }) {
     router.refresh()
   }
 
+  const handleDelete = async (postId: string) => {
+    const supabase = createClientComponentClient<Database>()
+    const { error } = await supabase.from('posts').delete().eq('id', postId)
+    if (error) {
+      console.error('Error deleting post:', error)
+      return
+    }
+    router.refresh()
+  }
+
   return posts.map((post) => (
-    <PostItem key={post.id} post={post} onEdit={handleEdit} />
+    <PostItem
+      key={post.id}
+      post={post}
+      onEdit={handleEdit}
+      onDelete={handleDelete}
+    />
   ))
 }
