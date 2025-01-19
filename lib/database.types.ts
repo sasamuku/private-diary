@@ -16,6 +16,7 @@ export type Database = {
           happened_at: string
           id: string
           is_starred: boolean
+          updated_at: string | null
           user_id: string
         }
         Insert: {
@@ -24,6 +25,7 @@ export type Database = {
           happened_at: string
           id?: string
           is_starred?: boolean
+          updated_at?: string | null
           user_id: string
         }
         Update: {
@@ -32,6 +34,7 @@ export type Database = {
           happened_at?: string
           id?: string
           is_starred?: boolean
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: [

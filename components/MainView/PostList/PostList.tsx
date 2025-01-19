@@ -41,6 +41,7 @@ export function PostList({ posts }: { posts: PostWithUser[] }) {
       .update({
         body: newBody,
         happened_at: new Date(newHappenedAt).toISOString(),
+        updated_at: new Date().toISOString(),
       })
       .eq('id', postId)
 
