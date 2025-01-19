@@ -70,7 +70,9 @@ Private Diary is an open-source web application that allows you to easily build 
    npm run dev
    ```
 
-### Local development
+## Local development
+
+### Set up local Supabase
 
 To set up Supabase in your local environment, follow these steps:
 
@@ -129,6 +131,24 @@ To set up Supabase in your local environment, follow these steps:
    ```
 
 For further details, refer to the [official Supabase local development documentation](https://supabase.com/docs/guides/local-development/overview) and [GitHub social login guide](https://supabase.com/docs/guides/auth/social-login/auth-github).
+
+### Syncing Database Schema
+
+When you make schema changes directly in the Supabase production environment, follow these steps to sync with your local environment:
+
+1. **Pull Schema**:
+   Fetch the production schema to your local environment:
+
+   ```bash
+   supabase db pull
+   ```
+
+2. **Update Type Definitions**:
+   Generate TypeScript type definitions to reflect the schema changes:
+
+   ```bash
+   supabase gen types typescript --project-id <your-project-id> > lib/database.types.ts
+   ```
 
 ## Deployment
 
