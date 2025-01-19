@@ -1,12 +1,20 @@
+import type { Database } from '@/lib/database.types'
 import {
   type User,
   createServerActionClient,
 } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
+import { Textarea } from './Textarea'
 
 export const dynamic = 'force-dynamic'
 
 export function NewPost({ user }: { user: User }) {
+  const now = new Date()
+  const today =
+    now.getHours() < 4
+      ? new Date(now.setDate(now.getDate() - 1)).toISOString().split('T')[0]
+      : now.toISOString().split('T')[0]
+
   const addPost = async (formData: FormData) => {
     'use server'
     const body = String(formData.get('body'))
@@ -15,7 +23,11 @@ export function NewPost({ user }: { user: User }) {
     ).toISOString()
     const supabase = createServerActionClient<Database>({ cookies })
 
-    await supabase.from('posts').insert({ body, happened_at, user_id: user.id })
+    await supabase.from('posts').insert({
+      body,
+      happened_at,
+      user_id: user.id,
+    })
   }
 
   return (
@@ -26,26 +38,23 @@ export function NewPost({ user }: { user: User }) {
             id="happened_at"
             type="date"
             name="happened_at"
-            className="bg-inherit border border-gray-700 rounded p-3 text-sm h-12 w-48 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors"
+            defaultValue={today}
+            className="bg-inherit border border-gray-700 rounded p-3 text-sm h-12 w-48
+                       focus:border-blue-500 focus:ring-1 focus:ring-blue-500
+                       outline-none transition-colors"
             required
           />
         </div>
 
         <div>
-          <textarea
-            id="post-body"
-            name="body"
-            rows={6}
-            className="bg-inherit w-full resize-none border border-gray-700 rounded p-4 text-lg leading-relaxed placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors"
-            placeholder="What's good today?"
-            required
-          />
+          <Textarea />
         </div>
 
         <div className="flex justify-end">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded transition-colors duration-200 min-w-[120px]"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6
+                       rounded transition-colors duration-200 min-w-[120px]"
           >
             Post
           </button>
