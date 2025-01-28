@@ -12,9 +12,17 @@ type Props = {
   post: PostWithUser
   onEdit: (postId: string, newBody: string, newHappenedAt: string) => void
   onDelete: (postId: string) => void
+  isLastWeekPost?: boolean
+  isLastMonthPost?: boolean
 }
 
-export default function PostItem({ post, onEdit, onDelete }: Props) {
+export function PostItem({
+  post,
+  onEdit,
+  onDelete,
+  isLastWeekPost,
+  isLastMonthPost,
+}: Props) {
   const [isEditing, setIsEditing] = useState(false)
   const [editedBody, setEditedBody] = useState(post.body)
   const [editedHappenedAt, setEditedHappenedAt] = useState(
@@ -102,6 +110,16 @@ export default function PostItem({ post, onEdit, onDelete }: Props) {
                   day: '2-digit',
                   weekday: 'short',
                 })}
+                {isLastWeekPost && (
+                  <span className="ml-2 text-base border border-yellow-400/50 bg-yellow-400/10 text-yellow-400 px-2 py-0.5 rounded-md">
+                    This day last week
+                  </span>
+                )}
+                {isLastMonthPost && (
+                  <span className="ml-2 text-base border border-blue-400/50 bg-blue-400/10 text-blue-400 px-2 py-0.5 rounded-md">
+                    This day last month
+                  </span>
+                )}
               </span>
             </p>
             <p>{post.body}</p>
