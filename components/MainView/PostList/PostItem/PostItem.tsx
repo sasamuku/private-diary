@@ -14,7 +14,7 @@ type Props = {
   onDelete: (postId: string) => void
 }
 
-export default function PostItem({ post, onEdit, onDelete }: Props) {
+export function PostItem({ post, onEdit, onDelete }: Props) {
   const [isEditing, setIsEditing] = useState(false)
   const [editedBody, setEditedBody] = useState(post.body)
   const [editedHappenedAt, setEditedHappenedAt] = useState(

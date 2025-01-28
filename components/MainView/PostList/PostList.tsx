@@ -3,7 +3,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import PostItem from './PostItem/PostItem'
+import { PostItem } from './PostItem'
 
 export function PostList({ posts }: { posts: PostWithUser[] }) {
   const supabase = createClientComponentClient<Database>()
