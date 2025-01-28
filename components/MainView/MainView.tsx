@@ -9,14 +9,26 @@ type MainViewProps = {
     user: User
   }
   posts: PostWithUser[]
+  lastWeekPost?: PostWithUser
+  lastMonthPost?: PostWithUser
 }
 
-export function MainView({ targetDate, session, posts }: MainViewProps) {
+export function MainView({
+  targetDate,
+  session,
+  posts,
+  lastWeekPost,
+  lastMonthPost,
+}: MainViewProps) {
   return (
     <div>
       <NewPost user={session.user} />
       <MonthSelector targetDate={targetDate} />
-      <PostList posts={posts} />
+      <PostList
+        posts={posts}
+        lastWeekPost={lastWeekPost}
+        lastMonthPost={lastMonthPost}
+      />
     </div>
   )
 }

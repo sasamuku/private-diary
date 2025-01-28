@@ -5,7 +5,13 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { PostItem } from './PostItem'
 
-export function PostList({ posts }: { posts: PostWithUser[] }) {
+type Props = {
+  posts: PostWithUser[]
+  lastWeekPost?: PostWithUser
+  lastMonthPost?: PostWithUser
+}
+
+export function PostList({ posts, lastWeekPost, lastMonthPost }: Props) {
   const supabase = createClientComponentClient<Database>()
   const router = useRouter()
 
@@ -63,12 +69,32 @@ export function PostList({ posts }: { posts: PostWithUser[] }) {
     router.refresh()
   }
 
-  return posts.map((post) => (
-    <PostItem
-      key={post.id}
-      post={post}
-      onEdit={handleEdit}
-      onDelete={handleDelete}
-    />
-  ))
+  return (
+    <>
+      {lastWeekPost && (
+        <PostItem
+          post={lastWeekPost}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          isLastWeekPost={true}
+        />
+      )}
+      {lastMonthPost && (
+        <PostItem
+          post={lastMonthPost}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          isLastMonthPost={true}
+        />
+      )}
+      {posts.map((post) => (
+        <PostItem
+          key={post.id}
+          post={post}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+      ))}
+    </>
+  )
 }
