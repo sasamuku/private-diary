@@ -1,106 +1,61 @@
-import { MainView } from '@/components/MainView'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import { endOfMonth, startOfMonth } from '../lib/utils/date'
-import AuthButtonServer from './auth-button-server'
+import { BookHeart, Calendar, Lock, Sparkles } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: { month?: string }
-}) {
-  const supabase = createServerComponentClient<Database>({ cookies })
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  if (!session) {
-    redirect('/login')
-  }
-
-  const targetDate = searchParams.month
-    ? new Date(searchParams.month)
-    : new Date()
-
-  const currentMonth = new Date()
-  const isCurrentMonth =
-    targetDate.getFullYear() === currentMonth.getFullYear() &&
-    targetDate.getMonth() === currentMonth.getMonth()
-
-  const lastWeekDate = new Date()
-  lastWeekDate.setDate(lastWeekDate.getDate() - 7)
-
-  const lastMonthDate = new Date()
-  lastMonthDate.setDate(lastMonthDate.getDate() - 30)
-
-  const [currentMonthPosts, lastWeekPosts, lastMonthPosts] = await Promise.all([
-    supabase
-      .from('posts')
-      .select('*, user: users(*)')
-      .gte('happened_at', startOfMonth(targetDate).toISOString())
-      .lte('happened_at', endOfMonth(targetDate).toISOString())
-      .order('happened_at', { ascending: false }),
-    ...(isCurrentMonth
-      ? [
-          supabase
-            .from('posts')
-            .select('*, user: users(*)')
-            .eq('happened_at', lastWeekDate.toISOString().split('T')[0]),
-          supabase
-            .from('posts')
-            .select('*, user: users(*)')
-            .eq('happened_at', lastMonthDate.toISOString().split('T')[0]),
-        ]
-      : [Promise.resolve({ data: null }), Promise.resolve({ data: null })]),
-  ])
-
-  const posts =
-    currentMonthPosts.data?.map((post) => ({
-      ...post,
-      user: Array.isArray(post.user) ? post.user[0] : post.user,
-    })) ?? []
-
-  const lastWeekPost = lastWeekPosts.data?.[0]
-    ? {
-        ...lastWeekPosts.data[0],
-        user: Array.isArray(lastWeekPosts.data[0].user)
-          ? lastWeekPosts.data[0].user[0]
-          : lastWeekPosts.data[0].user,
-      }
-    : undefined
-
-  const lastMonthPost = lastMonthPosts.data?.[0]
-    ? {
-        ...lastMonthPosts.data[0],
-        user: Array.isArray(lastMonthPosts.data[0].user)
-          ? lastMonthPosts.data[0].user[0]
-          : lastMonthPosts.data[0].user,
-      }
-    : undefined
-
+export default async function Home() {
   return (
-    <div className="w-full">
-      <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm">
-        <div className="container max-w-2xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <h1 className="text-lg font-semibold bg-gradient-to-r from-purple-600 to-cyan-600 bg-clip-text text-transparent">
-              Private Diary
-            </h1>
-          </div>
-          <AuthButtonServer />
+    <div className="min-h-screen bg-white dark:bg-slate-950">
+      {/* Hero Section */}
+      <div className="relative pt-32 pb-20 px-4">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute inset-0 bg-slate-50 dark:bg-slate-950" />
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-br from-purple-500/20 to-cyan-500/20 blur-3xl" />
         </div>
-      </header>
-      <MainView
-        targetDate={targetDate}
-        session={session}
-        posts={posts}
-        lastWeekPost={lastWeekPost}
-        lastMonthPost={lastMonthPost}
-      />
+
+        <div className="container max-w-2xl mx-auto text-center space-y-8">
+          <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-purple-600 to-cyan-600 bg-clip-text text-transparent">
+            Your Secret Garden
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl mx-auto">
+            A private space to capture your daily moments, thoughts, and
+            feelings. Reflect on your journey with our thoughtfully designed
+            digital diary.
+          </p>
+
+          {/* Feature Grid */}
+          <div className="grid md:grid-cols-2 gap-6 pt-12">
+            <div className="p-6 rounded-2xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border border-slate-200/20 dark:border-slate-800/20">
+              <Lock className="h-6 w-6 text-purple-500 mb-4" />
+              <h3 className="font-semibold mb-2">Private & Secure</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Your thoughts are yours alone. Everything stays private and
+                secure.
+              </p>
+            </div>
+            <div className="p-6 rounded-2xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border border-slate-200/20 dark:border-slate-800/20">
+              <Calendar className="h-6 w-6 text-cyan-500 mb-4" />
+              <h3 className="font-semibold mb-2">Daily Reflections</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Look back on your memories from last week and last month.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="pt-8">
+            <a
+              href="/login"
+              className="inline-flex items-center px-6 py-3 text-base font-medium text-white
+                         bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600
+                         rounded-lg shadow-lg transition-all duration-200
+                         focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+            >
+              Start Your Journey
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
