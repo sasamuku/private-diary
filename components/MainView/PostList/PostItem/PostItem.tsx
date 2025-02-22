@@ -35,18 +35,43 @@ export function PostItem({
   }
 
   return (
-    <div
-      key={post.id}
-      className="relative border border-gray-800 border-t-0 px-4 py-8 flex justify-between"
-    >
-      <div className="absolute top-0 right-0 mt-2 mr-2 p-2">
+    <div className="rounded-xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-md p-6 space-y-4">
+      <div className="flex items-start justify-between">
+        <div className="space-y-1">
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            {new Date(post.happened_at).toLocaleDateString('ja-JP', {
+              timeZone: 'Asia/Tokyo',
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              weekday: 'short',
+            })}
+            {isLastWeekPost && (
+              <span
+                className="ml-2 text-xs font-medium bg-gradient-to-r from-amber-500/10 to-yellow-500/10
+                             text-amber-600 dark:text-amber-400 px-2 py-1 rounded-full border border-amber-200/20"
+              >
+                Last Week
+              </span>
+            )}
+            {isLastMonthPost && (
+              <span
+                className="ml-2 text-xs font-medium bg-gradient-to-r from-blue-500/10 to-cyan-500/10
+                             text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full border border-blue-200/20"
+              >
+                Last Month
+              </span>
+            )}
+          </p>
+        </div>
+
         <DropdownMenu>
-          <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-700">
+          <DropdownMenuTrigger className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
             <MoreHorizontal className="h-4 w-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            align="end"
-            className="bg-gray-800 text-gray-100"
+            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
+                                       rounded-lg shadow-lg py-1"
           >
             <DropdownMenuItem
               onClick={() => setIsEditing(true)}
@@ -68,8 +93,8 @@ export function PostItem({
         </DropdownMenu>
       </div>
 
-      <div className="ml-4">
-        {isEditing ? (
+      {isEditing ? (
+        <div className="space-y-4">
           <div className="space-y-2">
             <input
               type="date"
@@ -99,34 +124,17 @@ export function PostItem({
               </button>
             </div>
           </div>
-        ) : (
-          <>
-            <p>
-              <span className="text-base text-gray-400">
-                {new Date(post.happened_at).toLocaleDateString('ja-JP', {
-                  timeZone: 'Asia/Tokyo',
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  weekday: 'short',
-                })}
-                {isLastWeekPost && (
-                  <span className="ml-2 text-base border border-yellow-400/50 bg-yellow-400/10 text-yellow-400 px-2 py-0.5 rounded-md">
-                    This day last week
-                  </span>
-                )}
-                {isLastMonthPost && (
-                  <span className="ml-2 text-base border border-blue-400/50 bg-blue-400/10 text-blue-400 px-2 py-0.5 rounded-md">
-                    This day last month
-                  </span>
-                )}
-              </span>
-            </p>
-            <p>{post.body}</p>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          <p className="text-slate-800 dark:text-slate-200 leading-relaxed">
+            {post.body}
+          </p>
+          <div className="flex items-center justify-between">
             <StarButton post={post} />
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

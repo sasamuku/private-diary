@@ -31,30 +31,30 @@ export function NewPost({ user }: { user: User }) {
   }
 
   return (
-    <form className="border border-gray-800 border-t-0 p-6" action={addPost}>
-      <div className="space-y-6">
-        <div>
-          <input
-            id="happened_at"
-            type="date"
-            name="happened_at"
-            defaultValue={today}
-            className="bg-inherit border border-gray-700 rounded p-3 text-sm h-12 w-48
-                       focus:border-blue-500 focus:ring-1 focus:ring-blue-500
-                       outline-none transition-colors"
-            required
-          />
-        </div>
+    <form
+      className="rounded-2xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-lg p-6"
+      action={addPost}
+    >
+      <div className="space-y-4">
+        <input
+          id="happened_at"
+          type="date"
+          name="happened_at"
+          defaultValue={today}
+          className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700
+                     rounded-lg px-4 py-2 text-sm w-48 outline-none
+                     focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 transition-all"
+          required
+        />
 
-        <div>
-          <Textarea />
-        </div>
+        <Textarea />
 
         <div className="flex justify-end">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6
-                       rounded transition-colors duration-200 min-w-[120px]"
+            className="bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600
+                       text-white font-medium px-6 py-2.5 rounded-lg transition-all duration-200
+                       focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
           >
             Post
           </button>

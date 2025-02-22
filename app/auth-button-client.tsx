@@ -4,11 +4,14 @@ import {
   type Session,
   createClientComponentClient,
 } from '@supabase/auth-helpers-nextjs'
+import { LogIn, LogOut } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 export default function AuthButtonClient<Database>({
   session,
-}: { session: Session | null }) {
+}: {
+  session: Session | null
+}) {
   const supabase = createClientComponentClient<Database>()
   const router = useRouter()
 
@@ -29,18 +32,24 @@ export default function AuthButtonClient<Database>({
   return session ? (
     <button
       type="button"
-      className="text-xm text-gray-400"
       onClick={handleSignOut}
+      className="flex items-center gap-2 px-4 py-2 text-sm font-medium
+                 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100
+                 rounded-lg transition-colors duration-200"
     >
-      Logout
+      <LogOut className="h-4 w-4" />
+      <span>Sign out</span>
     </button>
   ) : (
     <button
       type="button"
-      className="text-xm text-gray-400"
       onClick={handleSignIn}
+      className="flex items-center gap-2 px-4 py-2 text-sm font-medium
+                 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100
+                 rounded-lg transition-colors duration-200"
     >
-      Login
+      <LogIn className="h-4 w-4" />
+      <span>Sign in</span>
     </button>
   )
 }
