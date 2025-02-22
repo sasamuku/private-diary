@@ -11,10 +11,11 @@ export function Textarea() {
         textarea.style.height = 'auto'
         textarea.style.height = `${textarea.scrollHeight}px`
       }}
-      className="bg-inherit w-full resize-none border border-gray-700 rounded p-4 text-lg
-                 leading-relaxed placeholder-gray-500 focus:border-blue-500 focus:ring-1
-                 focus:ring-blue-500 outline-none transition-colors"
-      placeholder="What's good today?"
+      className="w-full resize-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm
+                 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3
+                 text-lg leading-relaxed placeholder-slate-400 dark:placeholder-slate-500
+                 focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 outline-none transition-all"
+      placeholder="What's on your mind today?"
       required
     />
   )

@@ -21,14 +21,18 @@ export function MainView({
   lastMonthPost,
 }: MainViewProps) {
   return (
-    <div>
-      <NewPost user={session.user} />
-      <MonthSelector targetDate={targetDate} />
-      <PostList
-        posts={posts}
-        lastWeekPost={lastWeekPost}
-        lastMonthPost={lastMonthPost}
-      />
+    <div className="container max-w-2xl mx-auto px-4 py-8">
+      <div className="space-y-8">
+        <NewPost user={session.user} />
+        <MonthSelector targetDate={targetDate} />
+        <div className="space-y-1">
+          <PostList
+            posts={posts}
+            lastWeekPost={lastWeekPost}
+            lastMonthPost={lastMonthPost}
+          />
+        </div>
+      </div>
     </div>
   )
 }
