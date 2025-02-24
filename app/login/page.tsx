@@ -1,7 +1,6 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import AuthButtonClient from '../auth-button-client'
 import GithubButton from './github-button'
 
 export const dynamic = 'force-dynamic'
@@ -14,7 +13,7 @@ export default async function Login() {
   } = await supabase.auth.getSession()
 
   if (session) {
-    redirect('/')
+    redirect('/home')
   }
 
   return (
@@ -27,9 +26,6 @@ export default async function Login() {
       <div className="w-full max-w-md mx-auto p-8 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm shadow-xl border border-slate-200/20">
         <div className="space-y-6">
           <div className="text-center space-y-3">
-            <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-purple-600 to-cyan-600 bg-clip-text text-transparent">
-              Your Private Diary
-            </h1>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
               Sign in with GitHub to continue
             </p>
