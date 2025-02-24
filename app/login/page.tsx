@@ -17,10 +17,10 @@ export default async function Login() {
   }
 
   return (
-    <div className="container relative min-h-screen flex-1 flex flex-col justify-center items-center">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-white dark:bg-slate-950" />
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-br from-purple-500/20 to-cyan-500/20 blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-br from-purple-500/20 to-cyan-500/20 blur-3xl" />
       </div>
 
       <div className="w-full max-w-md mx-auto p-8 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm shadow-xl border border-slate-200/20">
@@ -36,7 +36,20 @@ export default async function Login() {
           </div>
 
           <p className="text-xs text-center text-slate-500 dark:text-slate-400">
-            By signing in, you agree to our Terms and Privacy Policy
+            By signing in, you agree to our{' '}
+            <a
+              href="/terms"
+              className="underline hover:text-slate-700 dark:hover:text-slate-300"
+            >
+              Terms
+            </a>{' '}
+            and{' '}
+            <a
+              href="/privacy"
+              className="underline hover:text-slate-700 dark:hover:text-slate-300"
+            >
+              Privacy Policy
+            </a>
           </p>
         </div>
       </div>
