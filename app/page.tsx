@@ -1,12 +1,8 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { BookHeart, Calendar, Lock, Sparkles } from 'lucide-react'
-
-export const dynamic = 'force-dynamic'
+import { Calendar, Lock } from 'lucide-react'
 
 export default async function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
-      {/* Hero Section */}
       <div className="relative pt-32 pb-20 px-4">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute inset-0 bg-slate-50 dark:bg-slate-950" />
@@ -23,7 +19,6 @@ export default async function Home() {
             digital diary.
           </p>
 
-          {/* Feature Grid */}
           <div className="grid md:grid-cols-2 gap-6 pt-12">
             <div className="p-6 rounded-2xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border border-slate-200/20 dark:border-slate-800/20">
               <Lock className="h-6 w-6 text-purple-500 mb-4" />
@@ -42,7 +37,6 @@ export default async function Home() {
             </div>
           </div>
 
-          {/* CTA Button */}
           <div className="pt-8">
             <a
               href="/login"
