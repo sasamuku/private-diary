@@ -5,6 +5,8 @@ import AuthButtonServer from './auth-button-server'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Private Diary',
   description: 'A simple diary app to keep track of the good things in life.',
