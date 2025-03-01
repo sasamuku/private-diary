@@ -13,7 +13,7 @@ export function MonthSelector({ targetDate }: MonthSelectorProps) {
   const handleMonthChange = (monthOffset: number) => {
     const newDate = addMonths(targetDate, monthOffset)
     const newMonth = formatYearMonth(newDate)
-    router.push(`/?month=${newMonth}`)
+    router.push(`/home?month=${newMonth}`)
     router.refresh()
   }
 
