@@ -35,7 +35,7 @@ export function PostItem({
   }
 
   return (
-    <div className="rounded-xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-md p-6 space-y-4">
+    <div className="rounded-xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-md p-6 space-y-4 relative">
       <div className="flex items-start justify-between">
         <div className="space-y-1">
           <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -65,7 +65,7 @@ export function PostItem({
           </p>
         </div>
 
-        <div className="flex items-center space-x-1">
+        <div className="flex items-center space-x-1 relative z-10">
           <StarButton post={post} />
           <DropdownMenu>
             <DropdownMenuTrigger className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
@@ -73,7 +73,10 @@ export function PostItem({
             </DropdownMenuTrigger>
             <DropdownMenuContent
               className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
-                                       rounded-lg shadow-lg py-1"
+                         rounded-lg shadow-lg py-1 z-50"
+              sideOffset={5}
+              align="end"
+              alignOffset={0}
             >
               <DropdownMenuItem
                 onClick={() => setIsEditing(true)}
