@@ -1,4 +1,3 @@
-
   You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, Radix UI and Tailwind.
 
   Code Style and Structure
@@ -41,3 +40,19 @@
     - Avoid for data fetching or state management.
 
   Follow Next.js docs for Data Fetching, Rendering, and Routing.
+
+  Additional Rules
+  - Do not include comments in code
+  - Use English only for all user-facing text
+
+  Code Cleanliness
+  - Avoid inline comments in production code
+  - Use meaningful variable and function names instead of comments
+  - Document complex logic in separate documentation files
+  - Keep code self-explanatory through clear structure and naming
+
+  Internationalization
+  - All user interface text must be in English only
+  - Prepare for future localization by using string constants
+  - Avoid hardcoding text that might need translation later
+  - Use proper English grammar and spelling in all UI elements
