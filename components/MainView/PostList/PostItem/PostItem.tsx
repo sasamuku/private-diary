@@ -65,32 +65,35 @@ export function PostItem({
           </p>
         </div>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
-            <MoreHorizontal className="h-4 w-4" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
+        <div className="flex items-center space-x-1">
+          <StarButton post={post} />
+          <DropdownMenu>
+            <DropdownMenuTrigger className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+              <MoreHorizontal className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
                                        rounded-lg shadow-lg py-1"
-          >
-            <DropdownMenuItem
-              onClick={() => setIsEditing(true)}
-              className="cursor-pointer hover:bg-gray-700"
             >
-              Edit
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => {
-                if (window.confirm('Are you sure?')) {
-                  onDelete(post.id)
-                }
-              }}
-              className="cursor-pointer hover:bg-gray-700"
-            >
-              Delete
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+              <DropdownMenuItem
+                onClick={() => setIsEditing(true)}
+                className="cursor-pointer hover:bg-gray-700"
+              >
+                Edit
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  if (window.confirm('Are you sure?')) {
+                    onDelete(post.id)
+                  }
+                }}
+                className="cursor-pointer hover:bg-gray-700"
+              >
+                Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
 
       {isEditing ? (
@@ -126,13 +129,10 @@ export function PostItem({
           </div>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div>
           <p className="text-slate-800 dark:text-slate-200 leading-relaxed">
             {post.body}
           </p>
-          <div className="flex items-center justify-between">
-            <StarButton post={post} />
-          </div>
         </div>
       )}
     </div>
