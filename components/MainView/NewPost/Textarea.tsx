@@ -1,11 +1,14 @@
 'use client'
 
-export function Textarea() {
+import { forwardRef } from 'react'
+
+export const Textarea = forwardRef<HTMLTextAreaElement>((props, ref) => {
   return (
     <textarea
       id="post-body"
       name="body"
       rows={1}
+      ref={ref}
       onInput={(e) => {
         const textarea = e.currentTarget
         textarea.style.height = 'auto'
@@ -17,6 +20,9 @@ export function Textarea() {
                  focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 outline-none transition-all"
       placeholder="What's on your mind today?"
       required
+      {...props}
     />
   )
-}
+})
+
+Textarea.displayName = 'Textarea'
