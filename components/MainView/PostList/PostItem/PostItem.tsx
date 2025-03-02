@@ -100,33 +100,38 @@ export function PostItem({
       </div>
 
       {isEditing ? (
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <input
-              type="date"
-              value={editedHappenedAt}
-              onChange={(e) => setEditedHappenedAt(e.target.value)}
-              className="bg-gray-700 text-gray-100 p-2 rounded"
-            />
-            <textarea
-              value={editedBody}
-              onChange={(e) => setEditedBody(e.target.value)}
-              className="w-full bg-gray-700 text-gray-100 p-2 rounded"
-            />
-            <div className="space-x-2">
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-700"
-              >
-                Save
-              </button>
+        <div className="space-y-4 mt-2">
+          <div className="space-y-3">
+            <div className="relative">
+              <input
+                type="date"
+                value={editedHappenedAt}
+                onChange={(e) => setEditedHappenedAt(e.target.value)}
+                className="w-full bg-white/80 dark:bg-slate-800/80 text-slate-900 dark:text-slate-100 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
+              />
+            </div>
+            <div className="relative">
+              <textarea
+                value={editedBody}
+                onChange={(e) => setEditedBody(e.target.value)}
+                rows={4}
+                className="w-full bg-white/80 dark:bg-slate-800/80 text-slate-900 dark:text-slate-100 p-3 rounded-lg border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors resize-none"
+              />
+            </div>
+            <div className="flex space-x-3 justify-end">
               <button
                 type="button"
                 onClick={() => setIsEditing(false)}
-                className="px-3 py-1 bg-gray-600 rounded hover:bg-gray-700"
+                className="px-4 py-2 rounded-lg text-slate-700 dark:text-slate-300 bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500"
               >
                 Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="px-4 py-2 rounded-lg text-white bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+              >
+                Save
               </button>
             </div>
           </div>
