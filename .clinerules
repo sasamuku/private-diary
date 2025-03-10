@@ -1,0 +1,156 @@
+# Private Diary Project Rules
+
+## Project Structure Patterns
+
+1. **Component Structure**:
+   - Each component is placed in its own directory
+   - Exported via `index.ts` file
+   - Related sub-components are placed in the same directory
+
+2. **File Naming Conventions**:
+   - Component files: PascalCase (e.g., `PostItem.tsx`)
+   - Utility files: camelCase (e.g., `date.ts`)
+   - Page files: `page.tsx` (following Next.js conventions)
+
+3. **Import Order**:
+   - External libraries
+   - Internal modules (alphabetical order)
+   - Styles
+
+## Coding Patterns
+
+1. **TypeScript**:
+   - Use strict typing
+   - Avoid using `any` type
+   - Appropriate interfaces and type definitions
+
+2. **React**:
+   - Use functional components
+   - Leverage Hooks
+   - Properly separate server components and client components
+
+3. **State Management**:
+   - Use React Hooks for simple state
+   - Consider alternatives if complex state management becomes necessary
+
+4. **Styling**:
+   - Use TailwindCSS
+   - Prioritize utility classes
+   - Group complex styles within components
+
+## Supabase Related
+
+1. **Authentication**:
+   - Use GitHub OAuth
+   - Verify authentication state server-side
+
+2. **Data Access**:
+   - Use Row Level Security (RLS)
+   - Users can only access their own data
+   - Write type-safe queries
+
+3. **Migrations**:
+   - Manage schema changes with migration files
+   - Don't forget to update type definitions
+
+## Next.js Related
+
+1. **Routing**:
+   - Use App Router
+   - Define page components as `page.tsx`
+   - Define layouts as `layout.tsx`
+
+2. **Data Fetching**:
+   - Fetch data in server components
+   - Consider SWR or React Query for client components when necessary
+
+3. **Environment Variables**:
+   - Manage in `.env.local`
+   - Prefix variables used client-side with `NEXT_PUBLIC_`
+
+## Security Considerations
+
+1. **Authentication**:
+   - Proper management of session tokens
+   - Implementation of CSRF protection
+
+2. **Data Protection**:
+   - Encryption of sensitive data
+   - Setting appropriate RLS policies
+
+3. **Input Validation**:
+   - Validate all user input
+   - Implement XSS protection
+
+## Performance Optimization
+
+1. **Image Optimization**:
+   - Use Next.js's `Image` component
+   - Use appropriate image sizes and formats
+
+2. **Code Splitting**:
+   - Leverage dynamic imports
+   - Split large components as needed
+
+3. **Caching**:
+   - Implement appropriate caching strategies
+   - Utilize static generation
+
+## Testing Strategy
+
+1. **Unit Testing**:
+   - Test basic component functionality
+   - Test utility functions
+
+2. **Integration Testing**:
+   - Test interactions between multiple components
+   - Test integration with APIs
+
+3. **E2E Testing**:
+   - Test main user flows
+   - Test authentication flows
+
+## Deployment
+
+1. **Vercel**:
+   - Connect with GitHub repository
+   - Set environment variables
+   - Utilize preview deployments
+
+2. **Supabase**:
+   - Production environment setup
+   - Backup strategy
+   - Apply migrations
+
+## Documentation
+
+1. **Code Comments**:
+   - Add explanations for complex logic
+   - Use appropriate JSDoc for public APIs
+
+2. **README**:
+   - Setup instructions
+   - Explanation of main features
+   - Contribution guidelines
+
+3. **Component Documentation**:
+   - Usage of main components
+   - Explanation of props
+   - Provide examples
+
+## Project-Specific Patterns
+
+1. **Diary Entries**:
+   - One entry per date
+   - Management of favorite status
+   - Implementation of monthly view
+
+2. **Authentication Flow**:
+   - Use of GitHub authentication
+   - Redirects based on authentication state
+   - Session management
+
+3. **UI/UX**:
+   - Simple and intuitive interface
+   - Responsive design
+   - Accessibility considerations
