@@ -24,24 +24,18 @@ export function DeleteAccount({ user }: DeleteAccountProps) {
       setIsDeleting(true)
       setError(null)
 
-      // Delete user posts
-      const { error: postsError } = await supabase
-        .from('posts')
-        .delete()
-        .eq('user_id', user.id)
+      const response = await fetch('/api/users', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
 
-      if (postsError) throw postsError
+      const data = await response.json()
 
-      // Delete user profile
-      const { error: profileError } = await supabase
-        .from('users')
-        .delete()
-        .eq('id', user.id)
-
-      if (profileError) throw profileError
-
-      // Sign out
-      await supabase.auth.signOut()
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to delete account')
+      }
 
       // Redirect to home page
       router.push('/')
