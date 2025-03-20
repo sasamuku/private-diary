@@ -1,5 +1,6 @@
 import { SettingsForm } from '@/components/Settings'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { Settings } from 'lucide-react'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
@@ -18,12 +19,6 @@ export default async function SettingsPage() {
 
   return (
     <div className="container max-w-2xl mx-auto px-4 py-8">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
-          Account Settings
-        </h1>
-      </div>
-
       <SettingsForm user={session.user} />
     </div>
   )
