@@ -1,8 +1,9 @@
 'use client'
 
 import type { User } from '@supabase/auth-helpers-nextjs'
-import { GithubIcon, User as UserIcon } from 'lucide-react'
+import { GithubIcon, Home, User as UserIcon } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { DeleteAccount } from './DeleteAccount'
 
 type SettingsFormProps = {
@@ -12,6 +13,16 @@ type SettingsFormProps = {
 export function SettingsForm({ user }: SettingsFormProps) {
   return (
     <div className="space-y-8">
+      <div className="flex justify-between items-center">
+        <Link
+          href="/home"
+          className="flex items-center gap-2 px-4 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+        >
+          <Home className="h-4 w-4" />
+          <span>Back to Home</span>
+        </Link>
+      </div>
+
       <div className="space-y-4">
         <h2 className="text-xl font-semibold text-slate-800 dark:text-white flex items-center gap-2">
           <span className="inline-block w-1 h-6 bg-gradient-to-b from-purple-600 to-cyan-600 rounded-full" />
