@@ -12,13 +12,13 @@ export function Header() {
   }
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="w-full flex items-center justify-between">
       <div className="flex items-center gap-2">
         <h1 className="text-lg font-semibold bg-gradient-to-r from-purple-600 to-cyan-600 bg-clip-text text-transparent">
           Private Diary
         </h1>
       </div>
-      <div className="relative">
+      <div className="relative flex items-center">
         <button
           type="button"
           onClick={toggleMenu}
@@ -27,7 +27,11 @@ export function Header() {
         >
           <Menu className="h-5 w-5 text-slate-600 dark:text-slate-400" />
         </button>
-        {isMenuOpen && <HamburgerMenu onClose={() => setIsMenuOpen(false)} />}
+        {isMenuOpen && (
+          <div className="absolute right-0 top-full mt-1 z-50">
+            <HamburgerMenu onClose={() => setIsMenuOpen(false)} />
+          </div>
+        )}
       </div>
     </div>
   )

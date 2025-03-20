@@ -22,9 +22,6 @@ export default async function SettingsPage() {
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
           Account Settings
         </h1>
-        <p className="text-slate-600 dark:text-slate-400">
-          Manage your account settings and preferences
-        </p>
       </div>
 
       <SettingsForm user={session.user} />
