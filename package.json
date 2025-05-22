@@ -8,8 +8,8 @@
     "start": "next start",
     "fmt": "biome check --write --unsafe .",
     "lint": "biome check .",
-    "supabase:start": "pnpmsupabase start",
-    "supabase:stop": "supabase stop"
+    "supabase:start": "pnpm supabase start",
+    "supabase:stop": "pnpm supabase stop"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.2",
